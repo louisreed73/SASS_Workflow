@@ -61,6 +61,8 @@ listener2.funciones({
 }
 )
 
+console.log(listener1,listener2)
+
 
 
 

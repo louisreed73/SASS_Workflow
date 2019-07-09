@@ -47,17 +47,17 @@ let modListener = (function () {
 
 
     let Instancia=function() {
-        this._q = [];
-        this.elem;
+        let _q = [];
+        let elem;
         this._elem=function(){
 
-            this.elem =this. _q.map(item => document.querySelector(item));
+            elem = _q.map(item => document.querySelector(item));
 
 
         } 
      
         this.setSelectors = function (...args) {
-           this. _q.push(...args);
+            _q.push(...args);
            this. _elem();
 
         };
@@ -66,12 +66,12 @@ let modListener = (function () {
             return this._q
         };
         this.getElements = function () {
-            console.log(this.elem)
-            return this.elem;
+            console.log(elem)
+            return elem;
         };
         this.funciones = function (...args) {
 
-            this.elem.forEach((item, i) => {
+            elem.forEach((item, i) => {
                 item.addEventListener(args[i].evento, args[i].manejador)
             })
         };
