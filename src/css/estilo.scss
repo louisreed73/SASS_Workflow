@@ -13,9 +13,37 @@ body {
 
 .navbar-brand {
     color:white;
+    %shared {
+        color:lightblue
+    }
 }
 
 .navbar-toggler-icon {
     border:.5px solid white; 
     padding:5px;
+}
+
+h1, p, span {
+    @extend %shared
+};
+
+
+@mixin animacion($name) {
+@-webkit-keyframes #{$name} {
+@content
+};
+@-moz-keyframes #{$name} {
+@content
+};
+@-o-keyframes #{$name} {
+@content
+};
+@keyframes #{$name} {
+@content
+};
+}
+
+@include animacion(pepito){
+      0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
