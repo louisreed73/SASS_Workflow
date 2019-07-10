@@ -6,13 +6,13 @@
 
 body {
     // background:$color;
-    color:white;
+    // color:white;
     font-family: 'quicksand_lightregular';
     transition: all 1s ease-in-out;
 }
 
 .navbar-brand {
-    color:white;
+    // color:white;
     %shared {
         color:lightblue
     }
@@ -24,7 +24,9 @@ body {
 }
 
 h1, p, span {
-    @extend %shared
+    @extend %shared;
+    display:flex;
+    justify-content:center;
 };
 
 
