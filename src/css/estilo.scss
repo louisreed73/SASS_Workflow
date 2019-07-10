@@ -49,3 +49,169 @@ h1, p, span {
       0%   { opacity: 0; }
   100% { opacity: 1; }
 }
+
+// MAPS
+
+$sections : (
+    c-1:red,
+    c-2:rgb(78, 14, 14),
+    c-3:rgb(39, 214, 191),
+    c-4:rgb(138, 31, 124),
+    c-5:rgb(163, 36, 89),
+    c-6:rgb(168, 51, 31),
+    c-7:rgb(97, 218, 177),
+    c-8:rgb(65, 4, 4),
+    c-9:rgb(86, 126, 11),
+    c-10:rgb(51, 5, 47),
+);
+
+
+
+
+
+
+@each $clase, $color in $sections {
+    section.#{$clase} {
+        background: $color;
+
+    }
+}
+
+
+// MIXIN MEDIA
+
+
+@mixin media($minM,$maxM,$minL) {
+
+    @media screen and(min-width:$minM) and (max-width:$maxM) {
+        @content
+    }
+
+    @media screen and(min-width:$minL)  {
+        @content
+    }
+
+}
+
+@include media(450px,678px,1020px) {
+    h1
+    {
+        font-size:12px
+    }
+}
+
+$color:white;
+$porc: 100 / 16;
+
+main > div {
+    height:25px;
+
+};
+
+
+// EACH LOOP
+
+        @for $i from 1 to 17 {
+            // background:darken($color,(5) * $i)
+            main>:nth-child(#{$i}){
+                background:darken($color,$porc * $i)
+
+            }
+        };
+
+
+// VARIANTES
+
+@mixin movil {
+
+    @media screen and (max-width:#{$movilMax}) {
+        @content
+    }
+
+};
+
+@mixin tablet {
+
+    @media screen and (min-width:#{$tabletMin}) and (max-width:#{$tabletMax}) {
+        @content
+    }
+
+};
+
+@mixin desktopMedium {
+
+    @media screen and (min-width:#{$tabletMax + 1}) and (max-width:#{$desktopMedMax}) {
+        @content
+    }
+
+};
+
+@mixin desktopLarge {
+
+    @media screen and (min-width:#{$desktopMedMax + 1}) {
+        @content
+    }
+
+};
+
+$lista:(
+    /* comentario elemento,font-size,background,color */
+    h1 12px red white,
+    h2 10px rgb(0, 102, 255) gainsboro,
+    p 8px rgb(212, 125, 24) white
+    );
+
+    $listaL: length($lista) +px;
+
+    $max:13;
+
+    @for $i from 1 to $max{
+        $r:$max - ($i % $max ) ;
+        $w:percentage( $r / ($max - 1 ));
+
+        .main1 .c-#{$r}, .main2 .c-#{$r}  {
+
+            flex-grow:$r;
+            width:$w;
+            height:10px;
+            background:darkred;
+            margin:10 auto;
+
+        }
+        .main2 .c-#{$r} {
+
+            background:gold;
+
+
+        }
+    }
+
+    
+
+        @include tablet {
+            p {
+                font-size:14px;
+            }
+        }
+    
+        @include desktopMedium {
+            p {
+                font-size:16px;
+            }
+        }
+        @include desktopLarge {
+            fp {
+                font-size: 18px;
+            }
+        }
+
+        @each $elem, $fS, $b, $c in $lista {
+
+
+            #{$elem} {
+                font-size: $fS;
+                background: $b;
+                color:$c;
+                line-height:$listaL
+            }
+        };
